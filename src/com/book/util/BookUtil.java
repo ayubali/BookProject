@@ -10,15 +10,12 @@ public class BookUtil {
 	// private static Parser parser = new Parser();
 	private BookUtil() {
 	}
-	
-	
-	/* public Parser getParser()
-	  {
-	  		 return parser;	 	
-	  }	
-	*/
-	
-	private BufferedReader getBufferedReader(String fileName) {
+
+	/*
+	 * public Parser getParser() { return parser; }
+	 */
+
+	public static BufferedReader getBufferedReader(String fileName) {
 
 		BufferedReader reader = null;
 		FileReader fileReader = null;
