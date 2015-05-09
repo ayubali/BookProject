@@ -1,10 +1,5 @@
 package com.book.provider;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-
 import com.book.enity.Book;
 
 public class ServiceProvider implements Service {
@@ -16,22 +11,6 @@ public class ServiceProvider implements Service {
 
 	public static ServiceProvider getServiceProvider() {
 		return provider;
-	}
-
-	private BufferedReader getBufferedReader(String fileName) {
-
-		BufferedReader reader = null;
-		FileReader fileReader = null;
-		File file = null;
-		try {
-			file = new File(fileName);
-			fileReader = new FileReader(file);
-			reader = new BufferedReader(fileReader);
-		} catch (FileNotFoundException e) {
-			System.err.println(fileName + " is not found.");
-		}
-
-		return reader;
 	}
 
 	
