@@ -2,11 +2,14 @@ package com.book.writer;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.simple.JSONValue;
 
+import com.book.enity.Author;
 import com.book.enity.Book;
 
 /**
@@ -26,7 +29,11 @@ public class JsonWriter implements Writer<Book> {
 	public void write(Book book) {
 		Map<String, Object> obj = new LinkedHashMap<String, Object>();
 		obj.put("name", book.getName());
-		obj.put("authors", book.getAuthors());
+		List<String> authorsstr = new ArrayList<String>();
+		for (Author author : book.getAuthors()) {
+			authorsstr.add(author.getName());
+		}
+     	obj.put("authors", authorsstr);
 		obj.put("published­date", book.getPublished­Date());
 		Map<String, Object> root = new LinkedHashMap<String, Object>();
 		root.put("book", obj);

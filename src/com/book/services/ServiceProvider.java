@@ -4,6 +4,9 @@ import com.book.enity.Book;
 import com.book.perser.JsonParser;
 import com.book.perser.Parser;
 import com.book.perser.TxtParser;
+import com.book.writer.JsonWriter;
+import com.book.writer.TxtWriter;
+import com.book.writer.Writer;
 
 /**
  * This class implements conversion Services
@@ -15,6 +18,7 @@ public class ServiceProvider extends Service {
 
 	private static ServiceProvider provider = new ServiceProvider();
 	Parser<Book> parser = null;
+	Writer<Book> writer = null;
 
 	private ServiceProvider() {
 	}
@@ -37,13 +41,14 @@ public class ServiceProvider extends Service {
 
 	@Override
 	public void WriteToTxt(Book book) {
-		// TODO Auto-generated method stub
-
+		writer = new TxtWriter();
+		writer.write(book);
 	}
 
 	@Override
 	public void WriteToJson(Book book) {
-		// TODO Auto-generated method stub
+		writer = new JsonWriter();
+		writer.write(book);
 
 	}
 
