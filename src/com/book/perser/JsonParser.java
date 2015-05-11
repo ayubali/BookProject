@@ -52,24 +52,24 @@ public class JsonParser implements Parser<Book> {
 				Map.Entry entry = (Map.Entry) iter.next();
 				Map jsonObject = (Map) entry.getValue();
 
-				book.setName((String) jsonObject.get("name"));
+				book.setName(((String) jsonObject.get("name")).trim());
 
 				List<Author> authors = new ArrayList<Author>();
 				Object obj = jsonObject.get("authors");
 				if (obj instanceof List) {
 					List list = (List) obj;
 					for (Object object : list) {
-						authors.add(new Author(object.toString()));
+						authors.add(new Author(object.toString().trim()));
 					}
 				} else {
 					if (obj != null) {
-						authors.add(new Author(obj.toString()));
+						authors.add(new Author(obj.toString().trim()));
 					}
 				}
 
 				book.setAuthors(authors);
-				book.setPublished­Date((String) jsonObject
-						.get("published-date"));
+				book.setPublished­Date(((String) jsonObject
+						.get("published-date")).trim());
 
 			}
 

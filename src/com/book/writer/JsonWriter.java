@@ -33,17 +33,11 @@ public class JsonWriter implements Writer<Book> {
 		for (Author author : book.getAuthors()) {
 			authorsstr.add(author.getName());
 		}
-     	obj.put("authors", authorsstr);
-		obj.put("published­date", book.getPublished­Date());
+		obj.put("authors", authorsstr);
+		obj.put("published-­date", book.getPublished­Date());
 		Map<String, Object> root = new LinkedHashMap<String, Object>();
 		root.put("book", obj);
-		StringWriter out = new StringWriter();
-		try {
-			JSONValue.writeJSONString(root, out);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		String jsonText = out.toString();
+		String jsonText = JSONValue.toJSONString(root);
 		System.out.print(jsonText);
 	}
 

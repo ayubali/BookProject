@@ -34,14 +34,14 @@ public class TxtParser implements Parser<Book> {
 					continue;
 				}
 				if (data[0].equalsIgnoreCase("name")) {
-					book.setName(data[1]);
+					book.setName(data[1].trim());
 				} else if (data[0].equalsIgnoreCase("published-date")) {
-					book.setPublished­Date(data[1]);
+					book.setPublished­Date(data[1].trim());
 				} else if (data[0].equalsIgnoreCase("authors")) {
 					String[] authorsList = data[1].split(",");
 					List<Author> authors = new ArrayList<Author>();
 					for (int i = 0; i < authorsList.length; i++) {
-						authors.add(new Author(authorsList[i]));
+						authors.add(new Author(authorsList[i].trim()));
 					}
 					book.setAuthors(authors);
 				}

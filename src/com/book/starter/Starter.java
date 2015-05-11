@@ -18,13 +18,19 @@ public class Starter {
 		String fileData = BookUtil.readInputFile(args[0].trim());
 		BookSetting.inputFormat = BookUtil.DetectFileFormat(fileData);
 
-		System.out.println("input data: " + fileData);
+		System.out.println("Reading input ...\n++++");
+		System.out.print(fileData);
+		System.out.println("----");
+
+		System.out.println("Guessing text format ... ");
+		System.out.println("Book data is in " + BookSetting.inputFormat
+				+ " format");
+		System.out.println("Converting to " + BookSetting.targetFormat
+				+ " format");
 
 		Service service = ServiceProvider.getServiceProvider();
 		Book book = service.doParse(fileData);
-		System.out.println("book: " + book);
-		
-		System.out.println("targetFormat: "+BookSetting.targetFormat);
+		System.out.println("Here is the output... \n++++");
 		service.doWrite(book);
 
 	}
