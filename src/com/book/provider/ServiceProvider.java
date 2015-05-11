@@ -1,42 +1,52 @@
 package com.book.provider;
 
 import com.book.enity.Book;
+import com.book.util.BookSetting;
 
-public class ServiceProvider implements Service {
+public abstract class ServiceProvider {
 
-	private static ServiceProvider provider = new ServiceProvider();
+	public Book doParse(String fileData) {
+		Book book = null;
+		switch (BookSetting.inputFileFormat) {
+		case JSON:
+			book = parseFromJson(fileData);
+			break;
 
-	private ServiceProvider() {
+		case TXT:
+			book = parseFromTxt(fileData);
+			break;
+		default:
+			System.err.println("ERROR: input file not in corrent format");
+			break;
+		}
+		return book;
+
 	}
 
-	public static ServiceProvider getServiceProvider() {
-		return provider;
+	public Book doWrite(Book book) {
+
+		switch (BookSetting.outFileFormat) {
+		case JSON:
+			WriteToJson(book);
+			break;
+
+		case TXT:
+			WriteToTxt(book);
+			break;
+		default:
+			System.err.println("ERROR: input file not in corrent format");
+			break;
+		}
+		return book;
+
 	}
 
-	
-	
-	@Override
-	public Book parseFromTxt(String fileName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract Book parseFromTxt(String fileData);
 
-	@Override
-	public Book parseFromJson(String fileName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract Book parseFromJson(String fileData);
 
-	@Override
-	public Book WriteToTxt(String fileName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract void WriteToTxt(Book book);
 
-	@Override
-	public Book WriteToJson(String fileName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract void WriteToJson(Book book);
 
 }

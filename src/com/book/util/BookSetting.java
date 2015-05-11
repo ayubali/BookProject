@@ -1,0 +1,60 @@
+package com.book.util;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+import java.util.PropertyResourceBundle;
+
+import com.book.enity.FileFormat;
+
+/**
+ * This class represents project setting information
+ * 
+ * @author ayub
+ *
+ */
+public class BookSetting {
+
+	public static FileFormat inputFileFormat = FileFormat.NOVALUE;
+	public static FileFormat outFileFormat = FileFormat.NOVALUE;
+	public static FileFormat databaseFormat = FileFormat.NOVALUE;
+
+	/**
+	 * This method load project property file and initialize project setting
+	 * 
+	 * @param fileName
+	 *            The name of the property file
+	 */
+	public static void loadProjectSetting(String fileName) {
+		Properties prop = new Properties();
+		InputStream input = null;
+		try {
+			input = new FileInputStream(fileName);
+			PropertyResourceBundle prb = new PropertyResourceBundle(input);
+			if (BookUtil.readParameter(prb, "targetFormat", "")
+					.equalsIgnoreCase("json")) {
+				outFileFormat = FileFormat.JSON;
+			} else if (BookUtil.readParameter(prb, "targetFormat", "")
+					.equalsIgnoreCase("txt")) {
+				outFileFormat = FileFormat.TXT;
+			}
+
+		} catch (FileNotFoundException notFoundException) {
+			System.err.println(fileName + " is not found");
+		} catch (IOException e) {
+			System.err.println(fileName + " could not load properties file");
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					System.err.println("ERROR in closing " + fileName);
+				}
+			}
+		}
+
+	}
+}
