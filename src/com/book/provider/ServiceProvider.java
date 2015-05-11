@@ -1,52 +1,50 @@
 package com.book.provider;
 
 import com.book.enity.Book;
-import com.book.util.BookSetting;
+import com.book.perser.JsonParser;
+import com.book.perser.Parser;
+import com.book.perser.TxtParser;
 
-public abstract class ServiceProvider {
+/**
+ * This class implements Services
+ * 
+ * @author ayub
+ *
+ */
+public class ServiceProvider extends Service {
 
-	public Book doParse(String fileData) {
-		Book book = null;
-		switch (BookSetting.inputFileFormat) {
-		case JSON:
-			book = parseFromJson(fileData);
-			break;
+	private static ServiceProvider provider = new ServiceProvider();
+	Parser<Book> parser = null;
 
-		case TXT:
-			book = parseFromTxt(fileData);
-			break;
-		default:
-			System.err.println("ERROR: input file not in corrent format");
-			break;
-		}
-		return book;
+	private ServiceProvider() {
+	}
+
+	public static ServiceProvider getServiceProvider() {
+		return provider;
+	}
+
+	@Override
+	public Book parseFromTxt(String fileData) {
+		parser = new TxtParser();
+		return parser.parse(fileData);
+	}
+
+	@Override
+	public Book parseFromJson(String fileData) {
+		parser = new JsonParser();
+		return parser.parse(fileData);
+	}
+
+	@Override
+	public void WriteToTxt(Book book) {
+		// TODO Auto-generated method stub
 
 	}
 
-	public Book doWrite(Book book) {
-
-		switch (BookSetting.outFileFormat) {
-		case JSON:
-			WriteToJson(book);
-			break;
-
-		case TXT:
-			WriteToTxt(book);
-			break;
-		default:
-			System.err.println("ERROR: input file not in corrent format");
-			break;
-		}
-		return book;
+	@Override
+	public void WriteToJson(Book book) {
+		// TODO Auto-generated method stub
 
 	}
-
-	public abstract Book parseFromTxt(String fileData);
-
-	public abstract Book parseFromJson(String fileData);
-
-	public abstract void WriteToTxt(Book book);
-
-	public abstract void WriteToJson(Book book);
 
 }
