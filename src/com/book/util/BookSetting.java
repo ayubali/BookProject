@@ -18,10 +18,9 @@ import com.book.enity.FileFormat;
  */
 public class BookSetting {
 
-	public static FileFormat inputFileFormat = FileFormat.NOVALUE;
-	public static FileFormat outFileFormat = FileFormat.NOVALUE;
-	public static FileFormat databaseFormat = FileFormat.NOVALUE;
-
+	public static FileFormat inputFormat = FileFormat.NOVALUE;
+	public static FileFormat targetFormat = FileFormat.NOVALUE;
+	
 	/**
 	 * This method load project property file and initialize project setting
 	 * 
@@ -36,10 +35,10 @@ public class BookSetting {
 			PropertyResourceBundle prb = new PropertyResourceBundle(input);
 			if (BookUtil.readParameter(prb, "targetFormat", "")
 					.equalsIgnoreCase("json")) {
-				outFileFormat = FileFormat.JSON;
+				targetFormat = FileFormat.JSON;
 			} else if (BookUtil.readParameter(prb, "targetFormat", "")
 					.equalsIgnoreCase("txt")) {
-				outFileFormat = FileFormat.TXT;
+				targetFormat = FileFormat.TXT;
 			}
 
 		} catch (FileNotFoundException notFoundException) {

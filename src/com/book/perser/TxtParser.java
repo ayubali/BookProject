@@ -30,9 +30,12 @@ public class TxtParser implements Parser<Book> {
 			String[] lines = fileData.split("\n");
 			for (String line : lines) {
 				String[] data = line.split(":");
+				if (data.length != 2) {
+					continue;
+				}
 				if (data[0].equalsIgnoreCase("name")) {
 					book.setName(data[1]);
-				} else if (data[0].equalsIgnoreCase("published­date")) {
+				} else if (data[0].equalsIgnoreCase("published-date")) {
 					book.setPublished­Date(data[1]);
 				} else if (data[0].equalsIgnoreCase("authors")) {
 					String[] authorsList = data[1].split(",");

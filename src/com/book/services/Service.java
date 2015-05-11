@@ -1,4 +1,4 @@
-package com.book.provider;
+package com.book.services;
 
 import com.book.enity.Book;
 import com.book.util.BookSetting;
@@ -20,7 +20,7 @@ public abstract class Service {
 	 */
 	public Book doParse(String fileData) {
 		Book book = null;
-		switch (BookSetting.inputFileFormat) {
+		switch (BookSetting.inputFormat) {
 		case JSON:
 			book = parseFromJson(fileData);
 			break;
@@ -37,14 +37,15 @@ public abstract class Service {
 	}
 
 	/**
-	 * This method takes an instance of book object and write into JSON or TXT format
+	 * This method takes an instance of book object and write into JSON or TXT
+	 * format
 	 * 
 	 * @param book
 	 *            an intance of book
 	 */
 	public void doWrite(Book book) {
 
-		switch (BookSetting.outFileFormat) {
+		switch (BookSetting.targetFormat) {
 		case JSON:
 			WriteToJson(book);
 			break;

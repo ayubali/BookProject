@@ -27,8 +27,8 @@ public class JsonParser implements Parser<Book> {
 	 * 
 	 * @param fileData file data
 	 * 
-	 * @return an instance of book if json file data is successfully parsed, null
-	 * otherwise
+	 * @return an instance of book if json file data is successfully parsed,
+	 * null otherwise
 	 */
 	@Override
 	public Book parse(String fileData) {
@@ -54,15 +54,22 @@ public class JsonParser implements Parser<Book> {
 
 				book.setName((String) jsonObject.get("name"));
 
-				List list = (List) jsonObject.get("authors");
 				List<Author> authors = new ArrayList<Author>();
-				for (Object object : list) {
-					authors.add(new Author(object.toString()));
+				Object obj = jsonObject.get("authors");
+				if (obj instanceof List) {
+					List list = (List) obj;
+					for (Object object : list) {
+						authors.add(new Author(object.toString()));
+					}
+				} else {
+					if (obj != null) {
+						authors.add(new Author(obj.toString()));
+					}
 				}
 
 				book.setAuthors(authors);
 				book.setPublished­Date((String) jsonObject
-						.get("published­date"));
+						.get("published-date"));
 
 			}
 
@@ -71,5 +78,4 @@ public class JsonParser implements Parser<Book> {
 		}
 		return book;
 	}
-
 }
