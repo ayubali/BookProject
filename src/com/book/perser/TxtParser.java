@@ -7,13 +7,21 @@ import com.book.enity.Author;
 import com.book.enity.Book;
 
 /**
- * This class parse the text file data
+ * This class provides the support of parsing the txt file data
  * 
  * @author ayub
  *
  */
 public class TxtParser implements Parser<Book> {
 
+	/*
+	 * This method parse TXT file data and build an book instance
+	 * 
+	 * @param fileData file data
+	 * 
+	 * @return an instance of book if TXT file data is successfully parsed, null
+	 * otherwise
+	 */
 	@Override
 	public Book parse(String fileData) {
 		Book book = new Book();

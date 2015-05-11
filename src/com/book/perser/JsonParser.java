@@ -15,13 +15,21 @@ import com.book.enity.Book;
 import com.book.util.BookUtil;
 
 /**
- * This class parse the json file data
+ * This class provides the support of parsing the JSON file data
  * 
  * @author ayub
  *
  */
 public class JsonParser implements Parser<Book> {
 
+	/*
+	 * This method parse JSON file data and build an book instance
+	 * 
+	 * @param fileData file data
+	 * 
+	 * @return an instance of book if json file data is successfully parsed, null
+	 * otherwise
+	 */
 	@Override
 	public Book parse(String fileData) {
 		Book book = new Book();

@@ -12,7 +12,7 @@ import com.book.util.BookSetting;
 public abstract class Service {
 
 	/**
-	 * This method parse a file of type JSON and txt, return a book object
+	 * This method parse a file data of type JSON or TXT, return a book object
 	 * 
 	 * @param fileData
 	 *            file data
@@ -37,7 +37,7 @@ public abstract class Service {
 	}
 
 	/**
-	 * This method takes an instance of object and write into JSON or txt format
+	 * This method takes an instance of book object and write into JSON or TXT format
 	 * 
 	 * @param book
 	 *            an intance of book
@@ -59,7 +59,7 @@ public abstract class Service {
 	}
 
 	/**
-	 * This method parse txt file data and form book object
+	 * This method parse TXT file data and form book object
 	 * 
 	 * @param fileData
 	 *            file data
@@ -69,7 +69,7 @@ public abstract class Service {
 	public abstract Book parseFromTxt(String fileData);
 
 	/**
-	 * This method parse Json file data and form book object
+	 * This method parse JSON file data and form book object
 	 * 
 	 * @param fileData
 	 *            file data
@@ -79,7 +79,7 @@ public abstract class Service {
 	public abstract Book parseFromJson(String fileData);
 
 	/**
-	 * This method write the book information into txt format
+	 * This method write the book information into TXT format
 	 * 
 	 * @param book
 	 *            an instance of book
