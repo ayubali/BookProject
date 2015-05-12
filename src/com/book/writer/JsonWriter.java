@@ -28,7 +28,7 @@ public class JsonWriter implements Writer<Book> {
 	@Override
 	public void write(Book book) {
 		Map<String, Object> obj = new LinkedHashMap<String, Object>();
-		obj.put("name", book.getName());
+		obj.put("name", book.getName().toUpperCase());
 		List<String> authorsstr = new ArrayList<String>();
 		for (Author author : book.getAuthors()) {
 			authorsstr.add(author.getName());

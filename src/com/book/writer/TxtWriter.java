@@ -19,7 +19,7 @@ public class TxtWriter implements Writer<Book> {
 	 */
 	@Override
 	public void write(Book book) {
-		System.out.println("Name: " + book.getName());
+		System.out.println("Name: " + book.getName().toUpperCase());
 		String bookAuthors = "";
 
 		List<Author> authors = book.getAuthors();
