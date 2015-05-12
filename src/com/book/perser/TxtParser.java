@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.book.enity.Author;
 import com.book.enity.Book;
+import com.book.exception.ISBNNotFoundException;
 
 /**
  * This class provides the support of parsing the txt file data
@@ -27,6 +28,10 @@ public class TxtParser implements Parser<Book> {
 		Book book = new Book();
 		try {
 
+			if (!fileData.toLowerCase().contains("isbn")) {
+				throw new ISBNNotFoundException("");
+			}
+
 			String[] lines = fileData.split("\n");
 			for (String line : lines) {
 				String[] data = line.split(":");
@@ -44,17 +49,20 @@ public class TxtParser implements Parser<Book> {
 						authors.add(new Author(authorsList[i].trim()));
 					}
 					book.setAuthors(authors);
+				} else if (data[0].equalsIgnoreCase("isbn")) {
+					book.setIsbn(data[1].trim());
 				}
 
 			}
-		} catch (Exception ex) {
-			System.err.println("ERROR in parsing txt data");
+		} catch (ISBNNotFoundException e) {
+			System.err.println("Conversion is failed. ISBN is Missing.");
 			return null;
-
+		} catch (Exception ex) {
+			System.err.println("Conversion is failed. ERROR in parsing txt data");
+			return null;
 		}
 
 		return book;
 
 	}
-
 }

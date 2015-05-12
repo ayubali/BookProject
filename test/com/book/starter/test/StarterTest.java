@@ -21,6 +21,7 @@ public class StarterTest {
 	@Test
 	public void testMain() {
 		Starter.main(new String[] { "resource/input/input.txt" });
+		Starter.main(new String[] { "resource/input/input" });
 	}
 	@Test
 	public void testFailedMain() {

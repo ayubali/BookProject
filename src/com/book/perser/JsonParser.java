@@ -12,6 +12,7 @@ import org.json.simple.parser.ParseException;
 
 import com.book.enity.Author;
 import com.book.enity.Book;
+import com.book.exception.ISBNNotFoundException;
 import com.book.util.BookUtil;
 
 /**
@@ -34,7 +35,9 @@ public class JsonParser implements Parser<Book> {
 	public Book parse(String fileData) {
 		Book book = new Book();
 		try {
-
+			if (!fileData.toLowerCase().contains("isbn")) {
+				throw new ISBNNotFoundException("");
+			}
 			ContainerFactory containerFactory = new ContainerFactory() {
 				public List creatArrayContainer() {
 					return new LinkedList();
@@ -70,9 +73,13 @@ public class JsonParser implements Parser<Book> {
 				book.setAuthors(authors);
 				book.setPublished­Date(((String) jsonObject
 						.get("published-date")).trim());
+				book.setIsbn(((String) jsonObject.get("isbn")).trim());
 
 			}
 
+		} catch (ISBNNotFoundException e) {
+			System.err.println("Conversion is failed. ISBN is Missing.");
+			return null;
 		} catch (ParseException e) {
 			System.err.println("ERROR in parsing JSON data");
 			return null;

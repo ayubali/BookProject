@@ -20,7 +20,9 @@ public class BookSetting {
 
 	public static FileFormat inputFormat = FileFormat.NOVALUE;
 	public static FileFormat targetFormat = FileFormat.NOVALUE;
-	
+	public static String storageFile = null;
+	public static boolean isStorageEnabled = false;
+
 	/**
 	 * This method load project property file and initialize project setting
 	 * 
@@ -40,6 +42,10 @@ public class BookSetting {
 					.equalsIgnoreCase("txt")) {
 				targetFormat = FileFormat.TXT;
 			}
+
+			storageFile = BookUtil.readParameter(prb, "targetFormat", "");
+			isStorageEnabled = Boolean.parseBoolean(BookUtil.readParameter(prb,
+					"targetFormat", ""));
 
 		} catch (FileNotFoundException notFoundException) {
 			System.err.println(fileName + " is not found");
