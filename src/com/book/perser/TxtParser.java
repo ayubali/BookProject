@@ -49,6 +49,7 @@ public class TxtParser implements Parser<Book> {
 			}
 		} catch (Exception ex) {
 			System.err.println("ERROR in parsing txt data");
+			return null;
 
 		}
 

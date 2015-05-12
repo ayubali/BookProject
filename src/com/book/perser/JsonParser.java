@@ -75,6 +75,7 @@ public class JsonParser implements Parser<Book> {
 
 		} catch (ParseException e) {
 			System.err.println("ERROR in parsing JSON data");
+			return null;
 		}
 		return book;
 	}
