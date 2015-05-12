@@ -47,11 +47,11 @@ public abstract class Service {
 
 		switch (BookSetting.targetFormat) {
 		case JSON:
-			WriteToJson(book);
+			writeToJson(book);
 			break;
 
 		case TXT:
-			WriteToTxt(book);
+			writeToTxt(book);
 			break;
 		default:
 			System.err.println("ERROR: input file not in corrent format");
@@ -85,7 +85,7 @@ public abstract class Service {
 	 * @param book
 	 *            an instance of book
 	 */
-	protected abstract void WriteToTxt(Book book);
+	protected abstract void writeToTxt(Book book);
 
 	/**
 	 * This method write the book information into JSON format
@@ -93,6 +93,6 @@ public abstract class Service {
 	 * @param book
 	 *            an instance of book
 	 */
-	protected abstract void WriteToJson(Book book);
+	protected abstract void writeToJson(Book book);
 
 }

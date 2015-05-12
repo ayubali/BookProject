@@ -40,13 +40,13 @@ public class ServiceProvider extends Service {
 	}
 
 	@Override
-	protected void WriteToTxt(Book book) {
+	protected void writeToTxt(Book book) {
 		writer = new TxtWriter();
 		writer.write(book);
 	}
 
 	@Override
-	protected void WriteToJson(Book book) {
+	protected void writeToJson(Book book) {
 		writer = new JsonWriter();
 		writer.write(book);
 
