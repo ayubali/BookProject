@@ -33,6 +33,8 @@ public class Starter {
 						+ " format");
 				System.out.println("Here is the output... \n++++");
 				service.doWrite(book);
+				System.out.println();
+				System.out.println("----");
 			}
 		}
 
