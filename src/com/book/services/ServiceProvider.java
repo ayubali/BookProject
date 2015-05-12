@@ -28,25 +28,25 @@ public class ServiceProvider extends Service {
 	}
 
 	@Override
-	public Book parseFromTxt(String fileData) {
+	protected Book parseFromTxt(String fileData) {
 		parser = new TxtParser();
 		return parser.parse(fileData);
 	}
 
 	@Override
-	public Book parseFromJson(String fileData) {
+	protected Book parseFromJson(String fileData) {
 		parser = new JsonParser();
 		return parser.parse(fileData);
 	}
 
 	@Override
-	public void WriteToTxt(Book book) {
+	protected void WriteToTxt(Book book) {
 		writer = new TxtWriter();
 		writer.write(book);
 	}
 
 	@Override
-	public void WriteToJson(Book book) {
+	protected void WriteToJson(Book book) {
 		writer = new JsonWriter();
 		writer.write(book);
 

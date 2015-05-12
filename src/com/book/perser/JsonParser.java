@@ -44,7 +44,7 @@ public class JsonParser implements Parser<Book> {
 					return new LinkedHashMap();
 				}
 			};
-			Map json = (Map) BookUtil.getParser().parse(fileData,
+			Map json = (Map) BookUtil.getJSONParser().parse(fileData,
 					containerFactory);
 			Iterator iter = json.entrySet().iterator();
 

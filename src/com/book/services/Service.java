@@ -67,7 +67,7 @@ public abstract class Service {
 	 * @return an instance of book if file data is successfully parsed, null
 	 *         otherwise
 	 */
-	public abstract Book parseFromTxt(String fileData);
+	protected abstract Book parseFromTxt(String fileData);
 
 	/**
 	 * This method parse JSON file data and form book object
@@ -77,7 +77,7 @@ public abstract class Service {
 	 * @return an instance of book if file data is successfully parsed, null
 	 *         otherwise
 	 */
-	public abstract Book parseFromJson(String fileData);
+	protected abstract Book parseFromJson(String fileData);
 
 	/**
 	 * This method write the book information into TXT format
@@ -85,7 +85,7 @@ public abstract class Service {
 	 * @param book
 	 *            an instance of book
 	 */
-	public abstract void WriteToTxt(Book book);
+	protected abstract void WriteToTxt(Book book);
 
 	/**
 	 * This method write the book information into JSON format
@@ -93,6 +93,6 @@ public abstract class Service {
 	 * @param book
 	 *            an instance of book
 	 */
-	public abstract void WriteToJson(Book book);
+	protected abstract void WriteToJson(Book book);
 
 }

@@ -16,7 +16,7 @@ public class Starter {
 
 		BookSetting.loadProjectSetting("config/book-info-converter.properties");
 		String fileData = BookUtil.readInputFile(args[0].trim());
-		BookSetting.inputFormat = BookUtil.DetectFileFormat(fileData);
+		BookSetting.inputFormat = BookUtil.detectFileFormat(fileData);
 
 		System.out.println("Reading input ...\n++++");
 		System.out.print(fileData);

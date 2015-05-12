@@ -30,7 +30,7 @@ public class BookUtil {
 	 * 
 	 * @return JSONParser object
 	 */
-	public static JSONParser getParser() {
+	public static JSONParser getJSONParser() {
 		return parser;
 	}
 
@@ -41,18 +41,11 @@ public class BookUtil {
 	 *            fileName is the Name of file
 	 * @return a BufferedReader object
 	 */
-	public static BufferedReader getBufferedReader(String fileName) {
-		BufferedReader reader = null;
-		FileReader fileReader = null;
-		File file = null;
-		try {
-			file = new File(fileName);
-			fileReader = new FileReader(file);
-			reader = new BufferedReader(fileReader);
-		} catch (FileNotFoundException e) {
-			System.err.println(fileName + " is not found.");
-		}
-
+	public static BufferedReader getBufferedReader(String fileName)
+			throws FileNotFoundException {
+		File file = new File(fileName);
+		FileReader fileReader = new FileReader(file);
+		BufferedReader reader = new BufferedReader(fileReader);
 		return reader;
 	}
 
@@ -63,7 +56,7 @@ public class BookUtil {
 	 *            file content
 	 * @return format of file
 	 */
-	public static FileFormat DetectFileFormat(String fileData) {
+	public static FileFormat detectFileFormat(String fileData) {
 		FileFormat format = FileFormat.NOVALUE;
 		if (isJson(fileData)) {
 			format = FileFormat.JSON;
@@ -109,13 +102,14 @@ public class BookUtil {
 	 * 
 	 * @param fileName
 	 *            The name of file
-	 * @return content of the file as String
+	 * @return content of the file as String, null otherwise
 	 */
 	public static String readInputFile(String fileName) {
 		StringBuilder sb = new StringBuilder();
-		BufferedReader reader = getBufferedReader(fileName);
+		BufferedReader reader = null;
 		String line = null;
 		try {
+			reader = getBufferedReader(fileName);
 			while (true) {
 				line = reader.readLine();
 				if (line == null) {
@@ -127,8 +121,12 @@ public class BookUtil {
 					sb.append("\n");
 				}
 			}
+		} catch (FileNotFoundException e) {
+			System.err.println(fileName + " is not found");
+			return null;
 		} catch (IOException e) {
 			System.err.println("Could not read the " + fileName);
+			return null;
 		} finally {
 			if (reader != null) {
 				try {
