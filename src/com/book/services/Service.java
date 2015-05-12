@@ -54,7 +54,7 @@ public abstract class Service {
 			writeToTxt(book);
 			break;
 		default:
-			System.err.println("ERROR: input file not in corrent format");
+			System.err.println("ERROR: input file not in correct format");
 			break;
 		}
 	}
