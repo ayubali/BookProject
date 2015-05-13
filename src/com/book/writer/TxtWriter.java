@@ -30,6 +30,7 @@ public class TxtWriter implements Writer<Book> {
 		System.out.println("Author: "
 				+ bookAuthors.substring(0, bookAuthors.length() - 1));
 		System.out.println("Published Date: " + book.getPublished­Date());
+		System.out.println("ISBN: " + book.getIsbn());
 
 	}
 

@@ -5,6 +5,7 @@ import com.book.perser.JsonParser;
 import com.book.perser.Parser;
 import com.book.perser.TxtParser;
 import com.book.writer.JsonWriter;
+import com.book.writer.StorageWriter;
 import com.book.writer.TxtWriter;
 import com.book.writer.Writer;
 
@@ -49,7 +50,12 @@ public class ServiceProvider extends Service {
 	protected void writeToJson(Book book) {
 		writer = new JsonWriter();
 		writer.write(book);
+	}
 
+	@Override
+	protected void writeToStorage(Book book) {
+		writer = new StorageWriter();
+		writer.write(book);
 	}
 
 }

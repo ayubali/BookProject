@@ -17,8 +17,10 @@ public class Book {
 	public Book() {
 	}
 
-	public Book(String name, List<Author> authors, String published­Date) {
+	public Book(String name, String isbn, List<Author> authors,
+			String published­Date) {
 		this.name = name;
+		this.isbn = isbn;
 		this.authors = authors;
 		this.published­Date = published­Date;
 	}
@@ -46,11 +48,11 @@ public class Book {
 	public void setPublished­Date(String published­Date) {
 		this.published­Date = published­Date;
 	}
-	
+
 	public String getIsbn() {
 		return isbn;
 	}
-	
+
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}

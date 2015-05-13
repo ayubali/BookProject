@@ -43,9 +43,9 @@ public class BookSetting {
 				targetFormat = FileFormat.TXT;
 			}
 
-			storageFile = BookUtil.readParameter(prb, "targetFormat", "");
+			storageFile = BookUtil.readParameter(prb, "storageFile", "");
 			isStorageEnabled = Boolean.parseBoolean(BookUtil.readParameter(prb,
-					"targetFormat", ""));
+					"storageEnabled", "false"));
 
 		} catch (FileNotFoundException notFoundException) {
 			System.err.println(fileName + " is not found");

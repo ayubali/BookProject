@@ -9,28 +9,41 @@ import com.book.enity.Author;
 import com.book.enity.Book;
 import com.book.util.BookSetting;
 
+/**
+ * This class provides support of writing book data to file
+ * 
+ * @author ayub
+ *
+ */
 public class StorageWriter implements Writer<Book> {
 
+	/*
+	 * This method write book information to storage file
+	 * 
+	 * @param book an instance of Book
+	 */
 	@Override
 	public void write(Book book) {
 		FileWriter fw = null;
 		BufferedWriter bw = null;
 		try {
-			fw = new FileWriter(BookSetting.storageFile);
+			fw = new FileWriter(BookSetting.storageFile, true);
 			bw = new BufferedWriter(fw);
-			bw.write("name:" + book.getName());
+			bw.write(("name:" + book.getName()));
 			bw.newLine();
 			bw.write("isbn:" + book.getIsbn());
 			bw.newLine();
 			String bookAuthors = "";
 			List<Author> authors = book.getAuthors();
 			for (Author author : authors) {
-				bookAuthors += author.getName() + " ,";
+				bookAuthors += author.getName() + ",";
 			}
-			bw.write("authors:" + book.getPublished­Date());
+			bw.write("authors:"
+					+ bookAuthors.substring(0, bookAuthors.length() - 1));
 			bw.newLine();
 			bw.write("published-date:" + book.getPublished­Date());
 			bw.newLine();
+			bw.flush();
 
 		} catch (IOException e) {
 			System.err.println("ERROR in writting data to file.");

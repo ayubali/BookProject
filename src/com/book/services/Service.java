@@ -57,6 +57,11 @@ public abstract class Service {
 			System.err.println("ERROR: input file not in correct format");
 			break;
 		}
+
+		if (BookSetting.isStorageEnabled) {
+			writeToStorage(book);
+		}
+
 	}
 
 	/**
@@ -94,5 +99,13 @@ public abstract class Service {
 	 *            an instance of book
 	 */
 	protected abstract void writeToJson(Book book);
+
+	/**
+	 * This method write the book information to storage file
+	 * 
+	 * @param book
+	 *            an instance of book
+	 */
+	protected abstract void writeToStorage(Book book);
 
 }
