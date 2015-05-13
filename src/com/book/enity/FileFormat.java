@@ -9,5 +9,5 @@ package com.book.enity;
  */
 public enum FileFormat {
 
-	TXT, JSON, NOVALUE;
+	TXT, JSON, XML, NOVALUE;
 }

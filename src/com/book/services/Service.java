@@ -53,6 +53,10 @@ public abstract class Service {
 		case TXT:
 			writeToTxt(book);
 			break;
+			
+		case XML:
+			writeToXML(book);
+			break;
 		default:
 			System.err.println("ERROR: input file not in correct format");
 			break;
@@ -107,5 +111,13 @@ public abstract class Service {
 	 *            an instance of book
 	 */
 	protected abstract void writeToStorage(Book book);
+	
+	/**
+	 * This method write the book information to XML
+	 * 
+	 * @param book
+	 *            an instance of book
+	 */
+	protected abstract void writeToXML(Book book);
 
 }

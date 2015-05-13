@@ -8,6 +8,7 @@ import com.book.writer.JsonWriter;
 import com.book.writer.StorageWriter;
 import com.book.writer.TxtWriter;
 import com.book.writer.Writer;
+import com.book.writer.XMLWriter;
 
 /**
  * This class implements conversion Services
@@ -55,6 +56,12 @@ public class ServiceProvider extends Service {
 	@Override
 	protected void writeToStorage(Book book) {
 		writer = new StorageWriter();
+		writer.write(book);
+	}
+
+	@Override
+	protected void writeToXML(Book book) {
+		writer = new XMLWriter();
 		writer.write(book);
 	}
 
