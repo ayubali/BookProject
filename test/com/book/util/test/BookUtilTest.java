@@ -46,7 +46,7 @@ public class BookUtilTest extends TestCase {
 	}
 
 	@Test
-	public void testGetBufferedReader() throws FileNotFoundException {
+	public void testGetBufferedReader() throws IOException {
 		BufferedReader buffer = BookUtil.getBufferedReader(fileName);
 		assertNotNull("Could not get BufferedReader object", buffer);
 	}
@@ -56,7 +56,7 @@ public class BookUtilTest extends TestCase {
 		try {
 			BufferedReader buffer = BookUtil.getBufferedReader("");
 			assert false;
-		} catch (FileNotFoundException e) {
+		} catch (IOException  e) {
 			assert true;
 		}
 	}

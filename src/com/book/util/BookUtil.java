@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 
 import org.json.simple.parser.JSONParser;
@@ -42,11 +46,18 @@ public class BookUtil {
 	 * @return a BufferedReader object
 	 */
 	public static BufferedReader getBufferedReader(String fileName)
-			throws FileNotFoundException {
-		File file = new File(fileName);
-		FileReader fileReader = new FileReader(file);
-		BufferedReader reader = new BufferedReader(fileReader);
+			throws FileNotFoundException, IOException {
+		BufferedReader reader = null;
+		URL url = getURL(fileName);
+		if (url != null) {
+			reader = new BufferedReader(new InputStreamReader(url.openStream()));
+		} else {
+			File file = new File(fileName);
+			FileReader fileReader = new FileReader(file);
+			reader = new BufferedReader(fileReader);
+		}
 		return reader;
+
 	}
 
 	/**
@@ -124,6 +135,9 @@ public class BookUtil {
 		} catch (FileNotFoundException e) {
 			System.err.println(fileName + " is not found");
 			return null;
+		} catch (UnknownHostException ex) {
+			System.err.println(fileName + " is not valid web url");
+			return null;
 		} catch (IOException e) {
 			System.err.println("Could not read the " + fileName);
 			return null;
@@ -157,5 +171,22 @@ public class BookUtil {
 		String tmp = prb.getString(key);
 		return ((tmp != null) && (tmp.trim().length() != 0) ? (tmp.trim()
 				.equals("null") ? null : tmp.trim()) : deflt);
+	}
+
+	/**
+	 * This method takes a url and return URL object
+	 * 
+	 * @param fileName
+	 *            the Name of url
+	 * @return a valid URL object if fileName is valid web url, null otherwise
+	 */
+	private static URL getURL(String fileName) {
+		URL url = null;
+		try {
+			url = new URL(fileName);
+		} catch (MalformedURLException e) {
+			return null;
+		}
+		return url;
 	}
 }

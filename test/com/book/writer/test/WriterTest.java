@@ -16,6 +16,7 @@ import com.book.writer.JsonWriter;
 import com.book.writer.StorageWriter;
 import com.book.writer.TxtWriter;
 import com.book.writer.Writer;
+import com.book.writer.XMLWriter;
 
 public class WriterTest extends TestCase {
 	private Writer<Book> writer = null;
@@ -81,6 +82,12 @@ public class WriterTest extends TestCase {
 		assertEquals("File could not created", file.exists(), true);
 		assertNotSame("File size is not changed after write", file.length(),
 				fileSize);
+	}
+	@Test
+	public void testWriteBookToXML() {
+		System.out.println("testWriteBookToXML: writing object to JSON");
+		writer = new XMLWriter();
+		writer.write(book);
 	}
 
 }
