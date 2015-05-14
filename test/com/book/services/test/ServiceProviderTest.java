@@ -129,4 +129,17 @@ public class ServiceProviderTest extends TestCase {
 		assertNotSame("File size is not changed after write", file.length(),
 				fileSize);
 	}
+	
+	
+	@Test
+	public void testwriteToXML() throws NoSuchMethodException,
+			SecurityException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException {
+
+		Class cls = ServiceProvider.class;
+		Method A_init;
+		A_init = cls.getDeclaredMethod("writeToXML", Book.class);
+		A_init.setAccessible(true);
+		A_init.invoke(service, book);
+	}
 }

@@ -43,6 +43,8 @@ public class StorageWriter implements Writer<Book> {
 			bw.newLine();
 			bw.write("published-date:" + book.getPublished­Date());
 			bw.newLine();
+			bw.write("=====");
+			bw.newLine();
 			bw.flush();
 
 		} catch (IOException e) {
