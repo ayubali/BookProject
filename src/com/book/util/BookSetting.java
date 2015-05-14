@@ -41,6 +41,9 @@ public class BookSetting {
 			} else if (BookUtil.readParameter(prb, "targetFormat", "")
 					.equalsIgnoreCase("txt")) {
 				targetFormat = FileFormat.TXT;
+			} else if (BookUtil.readParameter(prb, "targetFormat", "")
+					.equalsIgnoreCase("xml")) {
+				targetFormat = FileFormat.XML;
 			}
 
 			storageFile = BookUtil.readParameter(prb, "storageFile", "");

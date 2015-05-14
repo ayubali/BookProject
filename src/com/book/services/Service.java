@@ -28,6 +28,7 @@ public abstract class Service {
 		case TXT:
 			book = parseFromTxt(fileData);
 			break;
+			
 		default:
 			System.err.println("ERROR: input file not in corrent format");
 			break;
@@ -58,7 +59,7 @@ public abstract class Service {
 			writeToXML(book);
 			break;
 		default:
-			System.err.println("ERROR: input file not in correct format");
+			System.err.println("ERROR: Target file not in correct format");
 			break;
 		}
 

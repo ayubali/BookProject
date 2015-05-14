@@ -1,6 +1,7 @@
 package com.book.starter;
 
 import com.book.enity.Book;
+import com.book.enity.FileFormat;
 import com.book.services.Service;
 import com.book.services.ServiceProvider;
 import com.book.util.BookSetting;
@@ -17,8 +18,18 @@ public class Starter {
 
 		BookSetting.loadProjectSetting("config/book-info-converter.properties");
 		String fileData = BookUtil.readInputFile(args[0].trim());
-		if (fileData != null) {
+		if (fileData != null && BookSetting.targetFormat != FileFormat.NOVALUE) {
 			BookSetting.inputFormat = BookUtil.detectFileFormat(fileData);
+			if (BookSetting.inputFormat == FileFormat.TXT) {
+				System.err.println("Input format " + BookSetting.inputFormat
+						+ " is not supported.");
+				return;
+			}
+			if (BookSetting.targetFormat == FileFormat.TXT) {
+				System.err.println("Target format " + BookSetting.targetFormat
+						+ " is not supported.");
+				return;
+			}
 			Service service = ServiceProvider.getServiceProvider();
 			Book book = service.doParse(fileData);
 			if (book != null) {
